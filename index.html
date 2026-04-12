@@ -12,8 +12,8 @@
   --border:#e0e0e0;
   --border-md:#c0c0c0;
   --text:#1a1a1a;
-  --muted:#888;
-  --faint:#bbb;
+  --muted:#888888;
+  --faint:#bbbbbb;
   --chip:#f1f1f1;
   --radius-sm:8px;
   --radius-md:12px;
@@ -26,61 +26,152 @@
     --border:#2e2e30;
     --border-md:#4a4a4c;
     --text:#f0f0f0;
-    --muted:#888;
-    --faint:#555;
+    --muted:#888888;
+    --faint:#555555;
     --chip:#2a2a2c;
   }
 }
 html{-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
 .app{max-width:520px;margin:0 auto;padding:1.25rem 1rem 3rem}
-.filter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem 1.125rem;margin-bottom:1rem}
-.filter-label{font-size:11px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.filter-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:1rem 1.125rem;
+  margin-bottom:1rem;
+}
+.filter-label{
+  font-size:11px;font-weight:600;color:var(--faint);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;
+}
 .filter-pills{display:flex;flex-wrap:wrap;gap:6px}
-.filter-pill{font-size:13px;padding:5px 12px;border-radius:var(--radius-pill);background:var(--chip);color:var(--muted);border:1px solid var(--border);cursor:pointer;transition:transform .12s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.filter-pill{
+  font-size:13px;padding:5px 12px;
+  border-radius:var(--radius-pill);
+  background:var(--chip);color:var(--muted);
+  border:1px solid var(--border);
+  cursor:pointer;transition:transform .12s;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
 .filter-pill:active{transform:scale(.95)}
 .filter-pill.active{background:var(--text);color:var(--surface);border-color:var(--text)}
-.preview{border-radius:var(--radius-md);height:60px;margin-bottom:1.125rem;border:1px solid var(--border);background:var(--chip);display:flex;align-items:center;padding:0 1.125rem;transition:background .25s}
+.preview{
+  border-radius:var(--radius-md);height:60px;
+  margin-bottom:1.125rem;
+  border:1px solid var(--border);
+  background:var(--chip);
+  display:flex;align-items:center;padding:0 1.125rem;
+  transition:background .25s;
+}
 .preview-text{font-size:13px;color:var(--muted)}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:1rem 1.125rem;margin-bottom:.75rem}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:1rem 1.125rem;
+  margin-bottom:.75rem;
+}
 .card-header{display:flex;align-items:flex-start;gap:14px}
-.swatch{width:52px;height:52px;flex-shrink:0;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--chip)}
+.swatch{
+  width:52px;height:52px;flex-shrink:0;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--chip);
+}
 .guide-name{font-size:16px;font-weight:600}
 .guide-sub{font-size:12px;color:var(--muted);margin-top:2px}
 .tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.tag{font-size:11px;padding:3px 9px;border-radius:var(--radius-pill);background:var(--chip);border:1px solid var(--border);color:var(--muted)}
-.accordion-toggle{margin-top:12px;font-size:13px;font-weight:500;cursor:pointer;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.tag{
+  font-size:11px;padding:3px 9px;
+  border-radius:var(--radius-pill);
+  background:var(--chip);border:1px solid var(--border);color:var(--muted);
+}
+.accordion-toggle{
+  margin-top:12px;font-size:13px;font-weight:500;
+  cursor:pointer;color:var(--muted);
+  -webkit-tap-highlight-color:transparent;
+}
 .accordion-toggle:hover{color:var(--text)}
-.accordion-content{margin-top:12px;border-top:1px solid var(--border);padding-top:14px;display:none}
+.accordion-content{
+  margin-top:12px;border-top:1px solid var(--border);
+  padding-top:14px;display:none;
+}
 .accordion-content.open{display:block}
-.section-head{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:8px}
-.seg{display:flex;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px}
-.seg button{flex:1;padding:7px 0;font-size:13px;background:none;border:none;cursor:pointer;color:var(--muted);font-family:inherit}
+.section-head{
+  font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--faint);margin-bottom:8px;
+}
+.seg{
+  display:flex;border:1px solid var(--border);
+  border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;
+}
+.seg button{
+  flex:1;padding:7px 0;font-size:13px;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-family:inherit;
+}
 .seg button.active{background:var(--chip);color:var(--text);font-weight:600}
 .unit-row{display:flex;gap:6px;margin-bottom:14px}
-.unit-btn{padding:5px 13px;font-size:13px;border:1px solid var(--border);border-radius:var(--radius-pill);background:none;cursor:pointer;color:var(--muted);font-family:inherit}
-.unit-btn.active{background:var(--chip);color:var(--text);font-weight:600;border-color:var(--border-md)}
+.unit-btn{
+  padding:5px 13px;font-size:13px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-pill);
+  background:none;cursor:pointer;color:var(--muted);font-family:inherit;
+}
+.unit-btn.active{
+  background:var(--chip);color:var(--text);
+  font-weight:600;border-color:var(--border-md);
+}
 .input-row{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-.input-row input{width:90px;padding:7px 10px;font-size:14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-family:inherit;-webkit-appearance:none;appearance:none}
+.input-row input{
+  width:90px;padding:7px 10px;font-size:14px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:var(--surface);color:var(--text);
+  font-family:inherit;-webkit-appearance:none;appearance:none;
+}
 .input-row input:focus{outline:2px solid #555;outline-offset:1px}
-.input-row .unit-label{font-size:13px;color:var(--muted)}
-.result-badge{padding:10px 14px;background:var(--chip);border-radius:var(--radius-sm);margin-bottom:14px;display:none}
-.result-badge .r-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
-.result-badge .r-val{font-size:24px;font-weight:600;margin-top:2px}
-.result-badge .r-range{font-size:12px;color:var(--muted);margin-top:2px}
-.result-badge .r-note{font-size:12px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.unit-label{font-size:13px;color:var(--muted)}
+.result-badge{
+  padding:10px 14px;background:var(--chip);
+  border-radius:var(--radius-sm);margin-bottom:14px;display:none;
+}
+.r-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.r-val{font-size:24px;font-weight:600;margin-top:2px;color:var(--text)}
+.r-range{font-size:12px;color:var(--muted);margin-top:2px}
+.r-note{
+  font-size:12px;color:var(--muted);
+  margin-top:6px;padding-top:6px;
+  border-top:1px solid var(--border);display:none;
+}
 .chart-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
-.chart-table th{text-align:left;font-size:11px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;padding:4px 0;border-bottom:1px solid var(--border)}
+.chart-table th{
+  text-align:left;font-size:11px;font-weight:600;color:var(--faint);
+  text-transform:uppercase;letter-spacing:.04em;
+  padding:4px 0;border-bottom:1px solid var(--border);
+}
 .chart-table td{padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted)}
 .chart-table td:last-child{text-align:right}
 .chart-table tr.hl td{color:var(--text);font-weight:600}
 .metric-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .metric{background:var(--chip);border-radius:var(--radius-sm);padding:10px 12px}
-.metric .m-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:4px}
-.metric .m-val{font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
-.select-input{width:100%;padding:7px 10px;font-size:13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);margin-bottom:14px;font-family:inherit}
+.m-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:4px}
+.m-val{font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
+.select-input{
+  width:100%;padding:7px 10px;font-size:13px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--surface);color:var(--text);
+  margin-bottom:14px;font-family:inherit;
+}
 .bed-note{font-size:12px;color:var(--faint);margin-top:4px}
 .empty{font-size:14px;color:var(--faint);text-align:center;padding:1.5rem 0}
+.foot-note{font-size:12px;color:var(--faint);margin-top:8px}
 </style>
 </head>
 <body>
@@ -92,62 +183,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   </div>
 
   <div class="preview" id="preview">
-    <span class="preview-text" id="previewText">Select a category to begin</span>
+    <span class="preview-text" id="previewText">Select a guide to begin</span>
   </div>
 
   <div id="cardGrid"></div>
 
 </div>
-
 <script>
-const GUIDES = [
-  {
-    id: "garment",
-    name: "Garment sizing",
-    sub: "Bust · Waist · Hip",
-    tags: ["Clothing", "Dress", "Tops"],
-    previewLabel: "Garment sizing — Bust, Waist & Hip",
-    type: "garment"
-  },
-  {
-    id: "bedding",
-    name: "Bedding sizing",
-    sub: "Duvet · Shams",
-    tags: ["Bedding", "Pillowcases"],
-    previewLabel: "Bedding — Duvet & Sham sizing",
-    type: "bedding"
-  }
+const GUIDES=[
+  {id:"garment",name:"Garment sizing",sub:"Bust · Waist · Hip",tags:["Clothing","Dress","Tops"],previewLabel:"Garment sizing — Bust, Waist & Hip"},
+  {id:"bedding",name:"Bedding sizing",sub:"Duvet · Shams",tags:["Bedding","Pillowcases"],previewLabel:"Bedding — Duvet & Sham sizing"}
 ];
-
-const FILTERS = ["All", "Clothing", "Bedding"];
-let activeFilter = "All";
-
-const sizes = ["XS/S","S/M","M/L","L/XL","XL/XXL"];
-const chartData = {
+const FILTERS=["All","Clothing","Bedding"];
+let activeFilter="All";
+const sizes=["XS/S","S/M","M/L","L/XL","XL/XXL"];
+const chartData={
   bust:{in:[[32,35],[35,38],[38,41],[41,44],[44,47]],cm:[[81,89],[89,96],[96,104],[104,112],[112,119]]},
   waist:{in:[[26,29],[29,32],[32,35],[35,38],[38,41]],cm:[[66,74],[74,81],[81,89],[89,97],[97,104]]},
   hip:{in:[[34,37],[37,40],[40,43],[43,46],[46,49]],cm:[[86,94],[94,102],[102,109],[109,117],[117,124]]}
 };
-const duvetMap = {single:[64,90],double:[80,90],queen:[90,90],king:[104,90]};
-const shamMap = {
+const duvetMap={single:[64,90],double:[80,90],queen:[90,90],king:[104,90]};
+const shamMap={
   minimal:{single:'1× Standard (20×26")',double:'2× Standard (20×26")',queen:'2× Standard (20×26")',king:'2× King (20×36")'},
   layered:{single:'1× Standard',double:'2× Standard',queen:'2× Euro + 2× Standard',king:'2× King + 2× Euro'}
 };
-
-const state = {
-  garment: { type:"bust", unit:"in", value:"" },
-  bedding: { unit:"in", width:"", style:"minimal" }
+const state={
+  garment:{type:"bust",unit:"in",value:""},
+  bedding:{unit:"in",width:"",style:"minimal"}
 };
 
-function buildFilters() {
-  const el = document.getElementById("topFilters");
-  FILTERS.forEach(f => {
-    const b = document.createElement("button");
-    b.className = "filter-pill" + (f==="All" ? " active" : "");
-    b.textContent = f;
-    b.onclick = () => {
-      activeFilter = f;
-      document.querySelectorAll(".filter-pill").forEach(x => x.classList.remove("active"));
+function buildFilters(){
+  const el=document.getElementById("topFilters");
+  FILTERS.forEach(f=>{
+    const b=document.createElement("button");
+    b.className="filter-pill"+(f==="All"?" active":"");
+    b.textContent=f;
+    b.onclick=()=>{
+      activeFilter=f;
+      document.querySelectorAll(".filter-pill").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
       renderCards();
     };
@@ -155,236 +228,223 @@ function buildFilters() {
   });
 }
 
-function matchFilter(guide) {
-  if(activeFilter === "All") return true;
-  if(activeFilter === "Clothing") return guide.id === "garment";
-  if(activeFilter === "Bedding") return guide.id === "bedding";
+function matchFilter(g){
+  if(activeFilter==="All") return true;
+  if(activeFilter==="Clothing") return g.id==="garment";
+  if(activeFilter==="Bedding") return g.id==="bedding";
   return false;
 }
 
-function renderCards() {
-  const grid = document.getElementById("cardGrid");
-  grid.innerHTML = "";
-  const list = GUIDES.filter(matchFilter);
-  if(!list.length) { grid.innerHTML = '<div class="empty">No guides match this filter.</div>'; return; }
-  list.forEach(g => grid.appendChild(g.id === "garment" ? buildGarmentCard(g) : buildBeddingCard(g)));
+function renderCards(){
+  const grid=document.getElementById("cardGrid");
+  grid.innerHTML="";
+  const list=GUIDES.filter(matchFilter);
+  if(!list.length){grid.innerHTML='<div class="empty">No guides match this filter.</div>';return;}
+  list.forEach(g=>grid.appendChild(g.id==="garment"?buildGarmentCard(g):buildBeddingCard(g)));
 }
 
-function buildGarmentCard(g) {
-  const card = document.createElement("div");
-  card.className = "card";
-  const s = state.garment;
-
-  card.innerHTML = `
+function buildGarmentCard(g){
+  const card=document.createElement("div");
+  card.className="card";
+  const s=state.garment;
+  card.innerHTML=`
     <div class="card-header">
       <div class="swatch"></div>
       <div>
         <div class="guide-name">${g.name}</div>
         <div class="guide-sub">${g.sub}</div>
-        <div class="tag-row">${g.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="tag-row">${g.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
       </div>
     </div>
-    <div class="accordion-toggle" id="toggle-garment">View sizing ›</div>
-    <div class="accordion-content" id="acc-garment">
+    <div class="accordion-toggle">View sizing ›</div>
+    <div class="accordion-content">
       <div class="section-head">Measurement point</div>
       <div class="seg" id="gTypeSeg">
-        <button data-v="bust" class="${s.type==='bust'?'active':''}">Bust</button>
-        <button data-v="waist" class="${s.type==='waist'?'active':''}">Waist</button>
-        <button data-v="hip" class="${s.type==='hip'?'active':''}">Hip</button>
+        <button data-v="bust" class="${s.type==="bust"?"active":""}">Bust</button>
+        <button data-v="waist" class="${s.type==="waist"?"active":""}">Waist</button>
+        <button data-v="hip" class="${s.type==="hip"?"active":""}">Hip</button>
       </div>
       <div class="section-head">Unit</div>
       <div class="unit-row" id="gUnitRow">
-        <button class="unit-btn ${s.unit==='in'?'active':''}" data-v="in">in</button>
-        <button class="unit-btn ${s.unit==='cm'?'active':''}" data-v="cm">cm</button>
+        <button class="unit-btn ${s.unit==="in"?"active":""}" data-v="in">in</button>
+        <button class="unit-btn ${s.unit==="cm"?"active":""}" data-v="cm">cm</button>
       </div>
       <div class="section-head">Your measurement</div>
       <div class="input-row">
-        <input type="number" id="gValueInput" inputmode="decimal" step="0.5" placeholder="e.g. 36" value="${s.value}">
-        <span class="unit-label" id="gUnitLabel">${s.unit}</span>
+        <input type="number" class="gValueInput" inputmode="decimal" step="0.5" placeholder="e.g. 36" value="${s.value}">
+        <span class="unit-label gUnitLabel">${s.unit}</span>
       </div>
-      <div class="result-badge" id="gResult">
+      <div class="result-badge gResult">
         <div class="r-label">Recommended size</div>
-        <div class="r-val" id="gSizeVal"></div>
-        <div class="r-range" id="gSizeRange"></div>
-        <div class="r-note" id="gSizeNote" style="display:none"></div>
+        <div class="r-val gSizeVal"></div>
+        <div class="r-range gSizeRange"></div>
+        <div class="r-note gSizeNote"></div>
       </div>
       <div class="section-head">Size chart</div>
       <table class="chart-table">
-        <thead><tr><th>Size</th><th id="gChartHead">Range</th></tr></thead>
-        <tbody id="gChartBody"></tbody>
+        <thead><tr><th>Size</th><th class="gChartHead">Range</th></tr></thead>
+        <tbody class="gChartBody"></tbody>
       </table>
-      <div style="font-size:12px;color:var(--faint);margin-top:8px">Dresses are 51–52" in length. Measure over the fullest point.</div>
-    </div>
-  `;
+      <div class="foot-note">Dresses are 51–52" in length. Measure over the fullest point.</div>
+    </div>`;
 
-  card.querySelector("#toggle-garment").addEventListener("click", function(){
-    const acc = card.querySelector("#acc-garment");
-    const open = acc.classList.toggle("open");
-    this.textContent = open ? "Hide sizing ↑" : "View sizing ›";
-    if(open){ setPreview(g.previewLabel); renderGChart(card); calcGarment(card); }
+  const toggle=card.querySelector(".accordion-toggle");
+  const acc=card.querySelector(".accordion-content");
+  toggle.addEventListener("click",function(){
+    const open=acc.classList.toggle("open");
+    this.textContent=open?"Hide sizing ↑":"View sizing ›";
+    if(open){setPreview(g.previewLabel);renderGChart(card);calcGarment(card);}
   });
-
-  card.querySelector("#gTypeSeg").addEventListener("click", e => {
-    const b = e.target.closest("button"); if(!b) return;
-    state.garment.type = b.dataset.v;
-    card.querySelectorAll("#gTypeSeg button").forEach(x => x.classList.toggle("active", x===b));
-    renderGChart(card); calcGarment(card);
+  card.querySelector("#gTypeSeg").addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;
+    state.garment.type=b.dataset.v;
+    card.querySelectorAll("#gTypeSeg button").forEach(x=>x.classList.toggle("active",x===b));
+    renderGChart(card);calcGarment(card);
   });
-
-  card.querySelector("#gUnitRow").addEventListener("click", e => {
-    const b = e.target.closest("button"); if(!b) return;
-    state.garment.unit = b.dataset.v;
-    card.querySelectorAll("#gUnitRow button").forEach(x => x.classList.toggle("active", x===b));
-    card.querySelector("#gUnitLabel").textContent = b.dataset.v;
-    renderGChart(card); calcGarment(card);
+  card.querySelector("#gUnitRow").addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;
+    state.garment.unit=b.dataset.v;
+    card.querySelectorAll("#gUnitRow button").forEach(x=>x.classList.toggle("active",x===b));
+    card.querySelector(".gUnitLabel").textContent=b.dataset.v;
+    renderGChart(card);calcGarment(card);
   });
-
-  card.querySelector("#gValueInput").addEventListener("input", function(){
-    state.garment.value = this.value;
-    calcGarment(card);
+  card.querySelector(".gValueInput").addEventListener("input",function(){
+    state.garment.value=this.value;calcGarment(card);
   });
-
   return card;
 }
 
-function renderGChart(card) {
-  const s = state.garment;
-  const rows = chartData[s.type][s.unit];
-  const v = parseFloat(s.value);
-  card.querySelector("#gChartHead").textContent = "Range (" + s.unit + ")";
-  card.querySelector("#gChartBody").innerHTML = rows.map((r,i) => {
-    const hl = !isNaN(v) && v >= r[0] && v <= r[1];
-    return `<tr class="${hl?'hl':''}"><td>${sizes[i]}</td><td>${r[0]}–${r[1]}</td></tr>`;
+function renderGChart(card){
+  const s=state.garment;
+  const rows=chartData[s.type][s.unit];
+  const v=parseFloat(s.value);
+  card.querySelector(".gChartHead").textContent="Range ("+s.unit+")";
+  card.querySelector(".gChartBody").innerHTML=rows.map((r,i)=>{
+    const hl=!isNaN(v)&&v>=r[0]&&v<=r[1];
+    return`<tr class="${hl?"hl":""}"><td>${sizes[i]}</td><td>${r[0]}–${r[1]}</td></tr>`;
   }).join("");
 }
 
-function calcGarment(card) {
-  const s = state.garment;
-  const v = parseFloat(s.value);
-  const res = card.querySelector("#gResult");
-  if(!v){ res.style.display="none"; renderGChart(card); return; }
-  const rows = chartData[s.type][s.unit];
-  const matches = rows.reduce((a,r,i) => r[0]<=v && v<=r[1] ? [...a,i] : a, []);
+function calcGarment(card){
+  const s=state.garment;
+  const v=parseFloat(s.value);
+  const res=card.querySelector(".gResult");
+  if(!v){res.style.display="none";renderGChart(card);return;}
+  const rows=chartData[s.type][s.unit];
+  const matches=rows.reduce((a,r,i)=>r[0]<=v&&v<=r[1]?[...a,i]:a,[]);
   if(!matches.length){
-    card.querySelector("#gSizeVal").textContent = "Out of range";
-    card.querySelector("#gSizeRange").textContent = "";
-    card.querySelector("#gSizeNote").style.display = "none";
-    res.style.display = "block"; renderGChart(card); return;
+    card.querySelector(".gSizeVal").textContent="Out of range";
+    card.querySelector(".gSizeRange").textContent="";
+    card.querySelector(".gSizeNote").style.display="none";
+    res.style.display="block";renderGChart(card);return;
   }
-  const idx = matches[matches.length-1];
-  card.querySelector("#gSizeVal").textContent = sizes[idx];
-  card.querySelector("#gSizeRange").textContent = rows[idx][0] + "–" + rows[idx][1] + " " + s.unit;
-  const note = card.querySelector("#gSizeNote");
-  if(matches.length > 1){ note.textContent = "Between sizes — relaxed fit recommended."; note.style.display = "block"; }
-  else { note.style.display = "none"; }
-  res.style.display = "block";
+  const idx=matches[matches.length-1];
+  card.querySelector(".gSizeVal").textContent=sizes[idx];
+  card.querySelector(".gSizeRange").textContent=rows[idx][0]+"–"+rows[idx][1]+" "+s.unit;
+  const note=card.querySelector(".gSizeNote");
+  if(matches.length>1){note.textContent="Between sizes — relaxed fit recommended.";note.style.display="block";}
+  else{note.style.display="none";}
+  res.style.display="block";
   renderGChart(card);
 }
 
-function buildBeddingCard(g) {
-  const card = document.createElement("div");
-  card.className = "card";
-  const s = state.bedding;
-
-  card.innerHTML = `
+function buildBeddingCard(g){
+  const card=document.createElement("div");
+  card.className="card";
+  const s=state.bedding;
+  card.innerHTML=`
     <div class="card-header">
       <div class="swatch"></div>
       <div>
         <div class="guide-name">${g.name}</div>
         <div class="guide-sub">${g.sub}</div>
-        <div class="tag-row">${g.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="tag-row">${g.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
       </div>
     </div>
-    <div class="accordion-toggle" id="toggle-bedding">View sizing ›</div>
-    <div class="accordion-content" id="acc-bedding">
+    <div class="accordion-toggle">View sizing ›</div>
+    <div class="accordion-content">
       <div class="section-head">Bed width</div>
       <div class="input-row">
-        <input type="number" id="bedWInput" inputmode="decimal" step="1" placeholder="e.g. 60" value="${s.width}">
-        <span class="unit-label" id="bUnitLabel">${s.unit}</span>
+        <input type="number" class="bedWInput" inputmode="decimal" step="1" placeholder="e.g. 60" value="${s.width}">
+        <span class="unit-label bUnitLabel">${s.unit}</span>
       </div>
       <div class="section-head">Unit</div>
       <div class="unit-row" id="bUnitRow">
-        <button class="unit-btn ${s.unit==='in'?'active':''}" data-v="in">in</button>
-        <button class="unit-btn ${s.unit==='cm'?'active':''}" data-v="cm">cm</button>
+        <button class="unit-btn ${s.unit==="in"?"active":""}" data-v="in">in</button>
+        <button class="unit-btn ${s.unit==="cm"?"active":""}" data-v="cm">cm</button>
       </div>
       <div class="section-head">Styling</div>
-      <select class="select-input" id="bStyleSel">
-        <option value="minimal" ${s.style==='minimal'?'selected':''}>Minimal</option>
-        <option value="layered" ${s.style==='layered'?'selected':''}>Layered — hotel style</option>
+      <select class="select-input bStyleSel">
+        <option value="minimal" ${s.style==="minimal"?"selected":""}>Minimal</option>
+        <option value="layered" ${s.style==="layered"?"selected":""}>Layered — hotel style</option>
       </select>
-      <div id="bResult" style="display:none">
+      <div class="bResult" style="display:none">
         <div class="metric-pair">
-          <div class="metric"><div class="m-label">Duvet</div><div class="m-val" id="duvetOut"></div></div>
-          <div class="metric"><div class="m-label">Shams</div><div class="m-val" id="shamOut"></div></div>
+          <div class="metric"><div class="m-label">Duvet</div><div class="m-val duvetOut"></div></div>
+          <div class="metric"><div class="m-label">Shams</div><div class="m-val shamOut"></div></div>
         </div>
-        <div class="bed-note" id="bedTypeNote"></div>
+        <div class="bed-note bedTypeNote"></div>
       </div>
       <div class="section-head" style="margin-top:14px">Bed reference</div>
       <table class="chart-table">
         <thead><tr><th>Type</th><th>Width</th></tr></thead>
         <tbody>
-          <tr id="b-single"><td>Single</td><td>≤ 42"</td></tr>
-          <tr id="b-double"><td>Double</td><td>43–54"</td></tr>
-          <tr id="b-queen"><td>Queen</td><td>55–66"</td></tr>
-          <tr id="b-king"><td>King</td><td>> 66"</td></tr>
+          <tr class="b-single"><td>Single</td><td>≤ 42"</td></tr>
+          <tr class="b-double"><td>Double</td><td>43–54"</td></tr>
+          <tr class="b-queen"><td>Queen</td><td>55–66"</td></tr>
+          <tr class="b-king"><td>King</td><td>&gt; 66"</td></tr>
         </tbody>
       </table>
-      <div style="font-size:12px;color:var(--faint);margin-top:8px">Duvet sizing allows for comfortable overhang.</div>
-    </div>
-  `;
+      <div class="foot-note">Duvet sizing allows for comfortable overhang.</div>
+    </div>`;
 
-  card.querySelector("#toggle-bedding").addEventListener("click", function(){
-    const acc = card.querySelector("#acc-bedding");
-    const open = acc.classList.toggle("open");
-    this.textContent = open ? "Hide sizing ↑" : "View sizing ›";
-    if(open){ setPreview(g.previewLabel); calcBedding(card); }
+  const toggle=card.querySelector(".accordion-toggle");
+  const acc=card.querySelector(".accordion-content");
+  toggle.addEventListener("click",function(){
+    const open=acc.classList.toggle("open");
+    this.textContent=open?"Hide sizing ↑":"View sizing ›";
+    if(open){setPreview(g.previewLabel);calcBedding(card);}
   });
-
-  card.querySelector("#bUnitRow").addEventListener("click", e => {
-    const b = e.target.closest("button"); if(!b) return;
-    state.bedding.unit = b.dataset.v;
-    card.querySelectorAll("#bUnitRow button").forEach(x => x.classList.toggle("active", x===b));
-    card.querySelector("#bUnitLabel").textContent = b.dataset.v;
+  card.querySelector("#bUnitRow").addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;
+    state.bedding.unit=b.dataset.v;
+    card.querySelectorAll("#bUnitRow button").forEach(x=>x.classList.toggle("active",x===b));
+    card.querySelector(".bUnitLabel").textContent=b.dataset.v;
     calcBedding(card);
   });
-
-  card.querySelector("#bedWInput").addEventListener("input", function(){
-    state.bedding.width = this.value; calcBedding(card);
+  card.querySelector(".bedWInput").addEventListener("input",function(){
+    state.bedding.width=this.value;calcBedding(card);
   });
-
-  card.querySelector("#bStyleSel").addEventListener("change", function(){
-    state.bedding.style = this.value; calcBedding(card);
+  card.querySelector(".bStyleSel").addEventListener("change",function(){
+    state.bedding.style=this.value;calcBedding(card);
   });
-
   return card;
 }
 
-function toIn(v,u){ return u==="cm" ? v/2.54 : v; }
-function toCm(v){ return Math.round(v*2.54); }
-function inferBed(w){ return w<=42?"single":w<=54?"double":w<=66?"queen":"king"; }
+function toIn(v,u){return u==="cm"?v/2.54:v;}
+function toCm(v){return Math.round(v*2.54);}
+function inferBed(w){return w<=42?"single":w<=54?"double":w<=66?"queen":"king";}
 
-function calcBedding(card) {
-  const s = state.bedding;
-  const w = parseFloat(s.width);
-  const res = card.querySelector("#bResult");
-  if(!w){ res.style.display="none"; return; }
-  const wi = toIn(w, s.unit);
-  const type = inferBed(wi);
-  const d = duvetMap[type];
-  card.querySelector("#duvetOut").textContent = s.unit==="cm"
-    ? toCm(d[0]) + "×" + toCm(d[1]) + " cm"
-    : d[0] + "×" + d[1] + '"';
-  card.querySelector("#shamOut").textContent = shamMap[s.style][type];
-  card.querySelector("#bedTypeNote").textContent = "Detected: " + type.charAt(0).toUpperCase() + type.slice(1) + " bed";
-  res.style.display = "block";
-  ["single","double","queen","king"].forEach(t => {
-    card.querySelector("#b-" + t).classList.toggle("hl", t===type);
+function calcBedding(card){
+  const s=state.bedding;
+  const w=parseFloat(s.width);
+  const res=card.querySelector(".bResult");
+  if(!w){res.style.display="none";return;}
+  const wi=toIn(w,s.unit);
+  const type=inferBed(wi);
+  const d=duvetMap[type];
+  card.querySelector(".duvetOut").textContent=s.unit==="cm"
+    ?toCm(d[0])+"×"+toCm(d[1])+" cm"
+    :d[0]+"×"+d[1]+'"';
+  card.querySelector(".shamOut").textContent=shamMap[s.style][type];
+  card.querySelector(".bedTypeNote").textContent="Detected: "+type.charAt(0).toUpperCase()+type.slice(1)+" bed";
+  res.style.display="block";
+  ["single","double","queen","king"].forEach(t=>{
+    card.querySelector(".b-"+t).classList.toggle("hl",t===type);
   });
 }
 
-function setPreview(text) {
-  document.getElementById("previewText").textContent = text;
-}
+function setPreview(text){document.getElementById("previewText").textContent=text;}
 
 buildFilters();
 renderCards();
