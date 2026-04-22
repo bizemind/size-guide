@@ -39,7 +39,7 @@ body{
   min-height:100vh;
 }
 .app{max-width:520px;margin:0 auto;padding:1.25rem 1rem 3rem}
-.header{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:1.25rem;text-align:center}
+.header{display:flex;align-items:baseline;justify-content:flex-start;gap:8px;margin-bottom:1.25rem;text-align:left}
 .header h1{font-size:20px;font-weight:700;letter-spacing:-0.3px}
 .header span{font-size:13px;color:var(--muted)}
 .filter-card{
@@ -175,6 +175,20 @@ body{
 .bed-note{font-size:12px;color:var(--faint);margin-top:4px}
 .empty{font-size:14px;color:var(--faint);text-align:center;padding:1.5rem 0}
 .foot-note{font-size:12px;color:var(--faint);margin-top:8px}
+.signature{
+  text-align:center;
+  margin-top:2.5rem;
+  padding-top:1.25rem;
+  border-top:1px solid var(--border);
+}
+.signature a{
+  font-size:12px;
+  color:var(--faint);
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:color .15s;
+}
+.signature a:hover{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -195,6 +209,10 @@ body{
   </div>
 
   <div id="cardGrid"></div>
+
+  <div class="signature">
+    <a href="https://creatis.in/pages/stack" target="_blank" rel="noopener">Built by The Creatis Stack</a>
+  </div>
 
 </div>
 <script>
