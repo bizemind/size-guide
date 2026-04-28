@@ -18,9 +18,6 @@
   --radius-sm:8px;
   --radius-md:12px;
   --radius-pill:99px;
-  --bust-clr:#3a7bd5;
-  --waist-clr:#c4621a;
-  --hip-clr:#2e9e58;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -41,18 +38,15 @@ body{
 }
 .app{max-width:520px;margin:0 auto;padding:1.25rem 1rem 3rem}
 
-/* header */
 .header{display:flex;align-items:baseline;gap:8px;margin-bottom:1.25rem}
 .header h1{font-size:20px;font-weight:700;letter-spacing:-0.3px}
 .header span{font-size:13px;color:var(--muted)}
 
-/* card */
 .card{
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:var(--radius-md);
-  padding:1rem 1.125rem;
-  margin-bottom:.75rem;
+  padding:1.125rem 1.125rem 1.25rem;
 }
 .guide-name{font-size:16px;font-weight:600;margin-bottom:2px}
 .guide-sub{font-size:12px;color:var(--muted)}
@@ -63,19 +57,12 @@ body{
   background:var(--chip);border:1px solid var(--border);color:var(--muted);
 }
 
-/* ── Sliding tape ── */
-.tape-wrap{
-  margin:1.125rem 0 0.25rem;
-  position:relative;
-  user-select:none;
-}
+/* ── Tape ── */
+.tape-wrap{margin:1.25rem 0 1.5rem}
 .tape-track{
-  position:relative;
-  height:56px;
+  position:relative;height:56px;
   background:linear-gradient(180deg,#f5efe0 0%,#ede4cc 100%);
-  border-radius:6px;
-  border:1px solid #d4c89a;
-  overflow:hidden;
+  border-radius:6px;border:1px solid #d4c89a;overflow:hidden;
 }
 @media(prefers-color-scheme:dark){
   .tape-track{
@@ -83,16 +70,8 @@ body{
     border-color:#4a4020;
   }
 }
-/* tick marks drawn by JS into canvas */
-.tape-canvas{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-}
-/* anchor labels */
-.tape-anchors{
-  position:absolute;top:0;left:0;right:0;bottom:0;
-  pointer-events:none;
-}
+.tape-canvas{position:absolute;inset:0;width:100%;height:100%}
+.tape-anchors{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
 .tape-anchor{
   position:absolute;top:0;bottom:0;
   display:flex;flex-direction:column;
@@ -100,108 +79,84 @@ body{
   transform:translateX(-50%);
 }
 .tape-anchor-label{
-  font-size:10px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  color:#8a7a50;
-  transition:color .2s,transform .2s;
-  line-height:1;
-  margin-bottom:3px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:#8a7a50;transition:color .2s,transform .2s;line-height:1;margin-bottom:3px;
 }
-@media(prefers-color-scheme:dark){
-  .tape-anchor-label{color:#8a7a50}
-}
-.tape-anchor.active .tape-anchor-label{
-  transform:scale(1.15);
-}
+@media(prefers-color-scheme:dark){.tape-anchor-label{color:#8a7a50}}
+.tape-anchor.active .tape-anchor-label{transform:scale(1.15)}
 .tape-anchor-dot{
-  width:5px;height:5px;border-radius:50%;
-  background:#c8b87a;
+  width:5px;height:5px;border-radius:50%;background:#c8b87a;
   transition:background .2s,transform .2s;
 }
-.tape-anchor.active .tape-anchor-dot{
-  transform:scale(1.4);
-}
-/* the sliding indicator */
+.tape-anchor.active .tape-anchor-dot{transform:scale(1.4)}
 .tape-indicator{
-  position:absolute;top:-6px;bottom:-6px;
-  width:2px;
-  border-radius:2px;
+  position:absolute;top:-4px;bottom:-4px;
+  display:flex;align-items:center;justify-content:center;
   transform:translateX(-50%);
   transition:left .38s cubic-bezier(.4,0,.2,1);
-  pointer-events:none;
-  z-index:2;
+  pointer-events:none;z-index:2;width:2px;
 }
-.tape-indicator::before{
-  content:'';
-  position:absolute;top:6px;bottom:6px;left:0;
-  width:2px;border-radius:2px;
+.tape-indicator-line{
+  position:absolute;top:4px;bottom:4px;left:0;width:2px;border-radius:2px;
 }
-/* diamond head on indicator */
-.tape-indicator::after{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  width:10px;height:10px;
-  transform:translate(-50%,-50%) rotate(45deg);
-  border-radius:2px;
+.tape-indicator-diamond{
+  position:absolute;width:10px;height:10px;
+  transform:rotate(45deg);border-radius:2px;
+  top:50%;left:50%;margin:-5px 0 0 -5px;
 }
-/* colours per zone — set via inline style on .tape-indicator */
 
-/* ── Accordion ── */
-.accordion-toggle{
-  margin-top:1rem;font-size:13px;font-weight:500;
-  cursor:pointer;color:var(--muted);
-  -webkit-tap-highlight-color:transparent;
+/* ── Measurement hero ── */
+.measure-hero{
+  background:var(--chip);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:1rem 1.125rem 1.125rem;
+  margin-bottom:1.25rem;
 }
-.accordion-toggle:hover{color:var(--text)}
-.accordion-content{
-  margin-top:12px;border-top:1px solid var(--border);
-  padding-top:14px;display:none;
-}
-.accordion-content.open{display:block}
-
-/* controls */
-.section-head{
+.measure-prompt{
   font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.05em;color:var(--faint);margin-bottom:8px;
+  letter-spacing:.06em;color:var(--faint);margin-bottom:.75rem;
 }
-.seg{
-  display:flex;border:1px solid var(--border);
-  border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;
+.measure-input-row{
+  display:flex;align-items:center;gap:10px;
 }
-.seg button{
-  flex:1;padding:7px 0;font-size:13px;
-  background:none;border:none;cursor:pointer;
-  color:var(--muted);font-family:inherit;
+.measure-input{
+  flex:1;
+  font-size:28px;font-weight:600;
+  padding:8px 12px;
+  border:2px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:var(--surface);
+  color:var(--text);
+  font-family:inherit;
+  -webkit-appearance:none;appearance:none;
+  transition:border-color .18s;
+  min-width:0;
 }
-.seg button.active{background:var(--chip);color:var(--text);font-weight:600}
-.unit-row{display:flex;gap:6px;margin-bottom:14px}
-.unit-btn{
-  padding:5px 13px;font-size:13px;
-  border:1px solid var(--border);border-radius:var(--radius-pill);
-  background:none;cursor:pointer;color:var(--muted);font-family:inherit;
+.measure-input:focus{
+  outline:none;
+  border-color:var(--border-md);
 }
-.unit-btn.active{
-  background:var(--chip);color:var(--text);
-  font-weight:600;border-color:var(--border-md);
+.measure-input::placeholder{color:var(--faint)}
+.measure-unit{
+  font-size:18px;font-weight:500;color:var(--muted);
+  flex-shrink:0;
 }
-.input-row{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-.input-row input{
-  width:90px;padding:7px 10px;font-size:14px;
-  border:1px solid var(--border);border-radius:var(--radius-sm);
-  background:var(--surface);color:var(--text);
-  font-family:inherit;-webkit-appearance:none;appearance:none;
+.measure-hint{
+  font-size:12px;color:var(--faint);margin-top:.625rem;
 }
-.input-row input:focus{outline:2px solid #555;outline-offset:1px}
-.unit-label{font-size:13px;color:var(--muted)}
 
-/* result */
+/* ── Result badge ── */
 .result-badge{
-  padding:10px 14px;background:var(--chip);
-  border-radius:var(--radius-sm);margin-bottom:14px;display:none;
+  margin-top:.875rem;
+  padding:10px 14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  display:none;
 }
 .r-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
-.r-val{font-size:24px;font-weight:600;margin-top:2px;color:var(--text)}
+.r-val{font-size:26px;font-weight:700;margin-top:2px;color:var(--text)}
 .r-range{font-size:12px;color:var(--muted);margin-top:2px}
 .r-note{
   font-size:12px;color:var(--muted);
@@ -209,7 +164,40 @@ body{
   border-top:1px solid var(--border);display:none;
 }
 
-/* chart */
+/* ── Controls ── */
+.section-head{
+  font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--faint);margin-bottom:8px;
+}
+.unit-row{display:flex;gap:6px;margin-bottom:1.25rem}
+.unit-btn{
+  padding:5px 14px;font-size:13px;
+  border:1px solid var(--border);border-radius:var(--radius-pill);
+  background:none;cursor:pointer;color:var(--muted);font-family:inherit;
+  transition:background .15s,color .15s;
+}
+.unit-btn.active{
+  background:var(--chip);color:var(--text);
+  font-weight:600;border-color:var(--border-md);
+}
+.seg{
+  display:flex;border:1px solid var(--border);
+  border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1.25rem;
+}
+.seg button{
+  flex:1;padding:7px 0;font-size:13px;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-family:inherit;
+}
+.seg button.active{background:var(--chip);color:var(--text);font-weight:600}
+
+/* ── Divider ── */
+.divider{
+  border:none;border-top:1px solid var(--border);
+  margin:1.125rem 0 1.25rem;
+}
+
+/* ── Chart ── */
 .chart-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
 .chart-table th{
   text-align:left;font-size:11px;font-weight:600;color:var(--faint);
@@ -221,7 +209,7 @@ body{
 .chart-table tr.hl td{color:var(--text);font-weight:600}
 .foot-note{font-size:12px;color:var(--faint);margin-top:8px}
 
-/* signature */
+/* ── Signature ── */
 .signature{
   text-align:center;margin-top:2.5rem;
   padding-top:1.25rem;border-top:1px solid var(--border);
@@ -255,51 +243,46 @@ const chartData = {
   waist: {in:[[26,29],[29,32],[32,35],[35,38],[38,41]],cm:[[66,74],[74,81],[81,89],[89,97],[97,104]]},
   hip:   {in:[[34,37],[37,40],[40,43],[43,46],[46,49]],cm:[[86,94],[94,102],[102,109],[109,117],[117,124]]}
 };
-
-/* zone config: left% position on tape, colour */
 const ZONES = {
   bust:  {pct:22, clr:'#3a7bd5', label:'Bust'},
   waist: {pct:50, clr:'#c4621a', label:'Waist'},
   hip:   {pct:78, clr:'#2e9e58', label:'Hip'},
 };
-
+const HINTS = {
+  bust:  'Measure around the fullest part of your chest.',
+  waist: 'Measure around the narrowest part of your torso.',
+  hip:   'Measure around the fullest part of your hips and seat.',
+};
 const state = {type:'bust', unit:'in', value:''};
 
-/* ── Draw tick marks on canvas ── */
 function drawTape(canvas){
   const dpr = window.devicePixelRatio||1;
   const W = canvas.offsetWidth, H = canvas.offsetHeight;
-  canvas.width  = W * dpr;
-  canvas.height = H * dpr;
+  if(!W||!H) return;
+  canvas.width = W*dpr; canvas.height = H*dpr;
   const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
-
+  ctx.scale(dpr,dpr);
   const dark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-  const tickClr  = dark ? 'rgba(200,180,100,0.35)' : 'rgba(100,80,20,0.25)';
-  const tickClrM = dark ? 'rgba(200,180,100,0.55)' : 'rgba(100,80,20,0.45)';
-
-  const step = W / 28;   // ~28 divisions across the tape
-  for(let i=0; i<=28; i++){
-    const x = i * step;
-    const major = i % 4 === 0;
-    const tickH = major ? H * 0.45 : H * 0.28;
-    ctx.strokeStyle = major ? tickClrM : tickClr;
+  const clr  = dark ? 'rgba(200,180,100,0.32)' : 'rgba(100,80,20,0.22)';
+  const clrM = dark ? 'rgba(200,180,100,0.55)' : 'rgba(100,80,20,0.42)';
+  const steps = 32;
+  const step  = W / steps;
+  for(let i=0; i<=steps; i++){
+    const x = i*step;
+    const major = i%4===0;
+    const th = major ? H*0.42 : H*0.26;
+    ctx.strokeStyle = major ? clrM : clr;
     ctx.lineWidth   = major ? 1.2 : 0.8;
     ctx.beginPath();
-    // ticks from top and bottom edges
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, tickH);
-    ctx.moveTo(x, H);
-    ctx.lineTo(x, H - tickH);
+    ctx.moveTo(x,0);       ctx.lineTo(x,th);
+    ctx.moveTo(x,H);       ctx.lineTo(x,H-th);
     ctx.stroke();
   }
 }
 
-/* ── Build garment card ── */
 function buildCard(){
   const card = document.createElement('div');
   card.className = 'card';
-
   card.innerHTML = `
     <div class="guide-name">Garment sizing</div>
     <div class="guide-sub">Bust · Waist · Hip</div>
@@ -309,7 +292,7 @@ function buildCard(){
       <span class="tag">Tops</span>
     </div>
 
-    <!-- Sliding tape -->
+    <!-- Tape -->
     <div class="tape-wrap">
       <div class="tape-track">
         <canvas class="tape-canvas"></canvas>
@@ -320,135 +303,124 @@ function buildCard(){
               <div class="tape-anchor-dot"></div>
             </div>`).join('')}
         </div>
-        <div class="tape-indicator" id="tapeIndicator"></div>
+        <div class="tape-indicator" id="tapeIndicator">
+          <div class="tape-indicator-line"></div>
+          <div class="tape-indicator-diamond"></div>
+        </div>
       </div>
     </div>
 
-    <div class="accordion-toggle">View sizing ›</div>
-    <div class="accordion-content">
-      <div class="section-head">Measurement point</div>
-      <div class="seg" id="gTypeSeg">
-        <button data-v="bust"  class="active">Bust</button>
-        <button data-v="waist">Waist</button>
-        <button data-v="hip">Hip</button>
+    <!-- Measurement hero -->
+    <div class="measure-hero">
+      <div class="measure-prompt">Your measurement</div>
+      <div class="measure-input-row">
+        <input class="measure-input gValueInput" type="number"
+          inputmode="decimal" step="0.5" placeholder="0" autocomplete="off">
+        <span class="measure-unit gUnitLabel">in</span>
       </div>
-      <div class="section-head">Unit</div>
-      <div class="unit-row" id="gUnitRow">
-        <button class="unit-btn active" data-v="in">in</button>
-        <button class="unit-btn" data-v="cm">cm</button>
-      </div>
-      <div class="section-head">Your measurement</div>
-      <div class="input-row">
-        <input type="number" class="gValueInput" inputmode="decimal" step="0.5" placeholder="e.g. 36">
-        <span class="unit-label gUnitLabel">in</span>
-      </div>
+      <div class="measure-hint gHint">${HINTS.bust}</div>
       <div class="result-badge gResult">
         <div class="r-label">Recommended size</div>
         <div class="r-val gSizeVal"></div>
         <div class="r-range gSizeRange"></div>
         <div class="r-note gSizeNote"></div>
       </div>
-      <div class="section-head">Size chart</div>
-      <table class="chart-table">
-        <thead><tr><th>Size</th><th class="gChartHead">Range (in)</th></tr></thead>
-        <tbody class="gChartBody"></tbody>
-      </table>
-      <div class="foot-note">Dresses are 51–52" in length. Measure over the fullest point.</div>
     </div>
+
+    <!-- Unit -->
+    <div class="section-head">Unit</div>
+    <div class="unit-row" id="gUnitRow">
+      <button class="unit-btn active" data-v="in">in</button>
+      <button class="unit-btn" data-v="cm">cm</button>
+    </div>
+
+    <!-- Measurement point -->
+    <div class="section-head">Measurement point</div>
+    <div class="seg" id="gTypeSeg">
+      <button data-v="bust" class="active">Bust</button>
+      <button data-v="waist">Waist</button>
+      <button data-v="hip">Hip</button>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Size chart -->
+    <div class="section-head">Size chart</div>
+    <table class="chart-table">
+      <thead><tr><th>Size</th><th class="gChartHead">Range (in)</th></tr></thead>
+      <tbody class="gChartBody"></tbody>
+    </table>
+    <div class="foot-note">Dresses are 51–52" in length. Measure over the fullest point.</div>
   `;
 
-  /* ── Tape init ── */
+  /* tape */
   const canvas    = card.querySelector('.tape-canvas');
   const indicator = card.querySelector('#tapeIndicator');
   const anchors   = card.querySelectorAll('.tape-anchor');
 
-  function setTapeZone(type, pulse){
+  function setZone(type, pulse){
     const z = ZONES[type];
-    // move indicator
     indicator.style.left = z.pct + '%';
-    indicator.style.setProperty('--iz-clr', z.clr);
-    indicator.style.background = 'transparent';
-    indicator.querySelector
-      ? null : null; // handled via ::before/after + inline vars below
-    // set colour on pseudo via box-shadow trick — use outline instead
-    indicator.style.outline = 'none';
-    // Actually set colour directly on the element children
-    updateIndicatorColor(indicator, z.clr, pulse);
-
-    // update anchor highlights
+    indicator.querySelector('.tape-indicator-line').style.background    = z.clr;
+    indicator.querySelector('.tape-indicator-diamond').style.background = z.clr;
     anchors.forEach(a=>{
-      const active = a.dataset.zone === type;
-      a.classList.toggle('active', active);
-      a.querySelector('.tape-anchor-label').style.color = active ? z.clr : '';
-      a.querySelector('.tape-anchor-dot').style.background = active ? z.clr : '';
+      const on = a.dataset.zone === type;
+      a.classList.toggle('active', on);
+      a.querySelector('.tape-anchor-label').style.color      = on ? z.clr : '';
+      a.querySelector('.tape-anchor-dot').style.background   = on ? z.clr : '';
     });
-  }
-
-  // Build indicator DOM properly (can't use ::before/after with JS colour)
-  indicator.innerHTML = `
-    <div style="
-      position:absolute;top:8px;bottom:8px;left:0;width:2px;
-      border-radius:2px;background:currentColor;
-    "></div>
-    <div style="
-      position:absolute;top:50%;left:50%;
-      width:10px;height:10px;
-      transform:translate(-50%,-50%) rotate(45deg);
-      border-radius:2px;background:currentColor;
-    "></div>`;
-
-  function updateIndicatorColor(el, clr, pulse){
-    el.style.color = clr;
+    card.querySelector('.gHint').textContent = HINTS[type];
     if(pulse){
-      el.style.opacity = '0';
+      indicator.style.opacity = '0.3';
       requestAnimationFrame(()=>{
-        el.style.transition = 'left .38s cubic-bezier(.4,0,.2,1), opacity .15s';
-        el.style.opacity = '1';
-        setTimeout(()=>{ el.style.transition = 'left .38s cubic-bezier(.4,0,.2,1)'; }, 400);
+        setTimeout(()=>{ indicator.style.opacity = '1'; }, 80);
       });
     }
   }
 
-  // Draw tape after layout
   requestAnimationFrame(()=>{
     drawTape(canvas);
-    setTapeZone(state.type, false);
+    setZone(state.type, false);
+    card.querySelector('.gValueInput').focus();
   });
   window.addEventListener('resize', ()=> drawTape(canvas), {passive:true});
 
-  /* ── Accordion ── */
-  const toggle = card.querySelector('.accordion-toggle');
-  const acc    = card.querySelector('.accordion-content');
-  toggle.addEventListener('click', function(){
-    const open = acc.classList.toggle('open');
-    this.textContent = open ? 'Hide sizing ↑' : 'View sizing ›';
-    if(open){ renderChart(card); calcSize(card); }
-  });
-
-  /* ── Tab: measurement point ── */
+  /* tabs */
   card.querySelector('#gTypeSeg').addEventListener('click', e=>{
     const b = e.target.closest('button'); if(!b) return;
     state.type = b.dataset.v;
-    card.querySelectorAll('#gTypeSeg button').forEach(x=>x.classList.toggle('active', x===b));
-    setTapeZone(state.type, false);
+    card.querySelectorAll('#gTypeSeg button').forEach(x=>x.classList.toggle('active',x===b));
+    setZone(state.type, false);
     renderChart(card); calcSize(card);
   });
 
-  /* ── Unit toggle ── */
+  /* unit */
   card.querySelector('#gUnitRow').addEventListener('click', e=>{
     const b = e.target.closest('button'); if(!b) return;
     state.unit = b.dataset.v;
-    card.querySelectorAll('#gUnitRow button').forEach(x=>x.classList.toggle('active', x===b));
-    card.querySelector('.gUnitLabel').textContent = b.dataset.v;
-    card.querySelector('.gChartHead').textContent = 'Range ('+b.dataset.v+')';
-    renderChart(card); calcSize(card);
+    card.querySelectorAll('#gUnitRow button').forEach(x=>x.classList.toggle('active',x===b));
+    card.querySelector('.gUnitLabel').textContent  = b.dataset.v;
+    card.querySelector('.gChartHead').textContent  = 'Range ('+b.dataset.v+')';
+    // clear value when switching units to avoid confusion
+    card.querySelector('.gValueInput').value = '';
+    state.value = '';
+    card.querySelector('.gResult').style.display = 'none';
+    renderChart(card);
   });
 
-  /* ── Value input ── */
+  /* input */
   card.querySelector('.gValueInput').addEventListener('input', function(){
     state.value = this.value;
-    if(parseFloat(this.value)) setTapeZone(state.type, true);
+    if(parseFloat(this.value)) setZone(state.type, true);
     calcSize(card);
+  });
+
+  /* highlight input border with zone colour on focus */
+  card.querySelector('.gValueInput').addEventListener('focus', function(){
+    this.style.borderColor = ZONES[state.type].clr;
+  });
+  card.querySelector('.gValueInput').addEventListener('blur', function(){
+    this.style.borderColor = '';
   });
 
   renderChart(card);
@@ -468,10 +440,10 @@ function calcSize(card){
   const v   = parseFloat(state.value);
   const res = card.querySelector('.gResult');
   if(!v){ res.style.display='none'; renderChart(card); return; }
-  const rows = chartData[state.type][state.unit];
+  const rows    = chartData[state.type][state.unit];
   const matches = rows.reduce((a,r,i)=> r[0]<=v&&v<=r[1] ? [...a,i] : a, []);
   if(!matches.length){
-    card.querySelector('.gSizeVal').textContent  = 'Out of range';
+    card.querySelector('.gSizeVal').textContent   = 'Out of range';
     card.querySelector('.gSizeRange').textContent = '';
     card.querySelector('.gSizeNote').style.display = 'none';
     res.style.display = 'block'; renderChart(card); return;
@@ -480,8 +452,12 @@ function calcSize(card){
   card.querySelector('.gSizeVal').textContent   = sizes[idx];
   card.querySelector('.gSizeRange').textContent = rows[idx][0]+'–'+rows[idx][1]+' '+state.unit;
   const note = card.querySelector('.gSizeNote');
-  if(matches.length>1){ note.textContent='Between sizes — relaxed fit recommended.'; note.style.display='block'; }
-  else { note.style.display='none'; }
+  if(matches.length>1){
+    note.textContent     = 'Between sizes — relaxed fit recommended.';
+    note.style.display   = 'block';
+  } else {
+    note.style.display   = 'none';
+  }
   res.style.display = 'block';
   renderChart(card);
 }
