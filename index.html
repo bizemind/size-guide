@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Size Guide — Creatis</title>
+<title>Size Guide — One Day in November</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -18,6 +18,9 @@
   --radius-sm:8px;
   --radius-md:12px;
   --radius-pill:99px;
+  --bust-clr:#3a7bd5;
+  --waist-clr:#c4621a;
+  --hip-clr:#2e9e58;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -77,6 +80,7 @@ body{
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   transform:translateX(-50%);
+  transition:opacity .2s;
 }
 .tape-anchor-label{
   font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
@@ -88,7 +92,8 @@ body{
   width:5px;height:5px;border-radius:50%;background:#c8b87a;
   transition:background .2s,transform .2s;
 }
-.tape-anchor.active .tape-anchor-dot{transform:scale(1.4)}
+.tape-anchor.active .tape-anchor-dot{transform:scale(1.5)}
+.tape-anchor.filled .tape-anchor-dot{transform:scale(1.2)}
 .tape-indicator{
   position:absolute;top:-4px;bottom:-4px;
   display:flex;align-items:center;justify-content:center;
@@ -105,7 +110,7 @@ body{
   top:50%;left:50%;margin:-5px 0 0 -5px;
 }
 
-/* ── Measurement hero ── */
+/* ── Measure hero ── */
 .measure-hero{
   background:var(--chip);
   border:1px solid var(--border);
@@ -115,15 +120,31 @@ body{
 }
 .measure-prompt{
   font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.06em;color:var(--faint);margin-bottom:.75rem;
+  letter-spacing:.06em;color:var(--faint);margin-bottom:.25rem;
 }
-.measure-input-row{
-  display:flex;align-items:center;gap:10px;
+.measure-best-fit{
+  font-size:12px;color:var(--muted);margin-bottom:1rem;
 }
+.measure-best-fit strong{color:var(--text);font-weight:600;}
+
+/* 3-input grid */
+.measure-inputs{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;
+  margin-bottom:.75rem;
+}
+.measure-field{display:flex;flex-direction:column;gap:5px}
+.measure-field-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--faint);
+  transition:color .18s;
+}
+.measure-field-label.bust-active{color:var(--bust-clr)}
+.measure-field-label.waist-active{color:var(--waist-clr)}
+.measure-field-label.hip-active{color:var(--hip-clr)}
 .measure-input{
-  flex:1;
-  font-size:28px;font-weight:600;
-  padding:8px 12px;
+  width:100%;
+  font-size:22px;font-weight:600;
+  padding:7px 10px;
   border:2px solid var(--border);
   border-radius:var(--radius-sm);
   background:var(--surface);
@@ -133,42 +154,14 @@ body{
   transition:border-color .18s;
   min-width:0;
 }
-.measure-input:focus{
-  outline:none;
-  border-color:var(--border-md);
-}
-.measure-input::placeholder{color:var(--faint)}
-.measure-unit{
-  font-size:18px;font-weight:500;color:var(--muted);
-  flex-shrink:0;
-}
-.measure-hint{
-  font-size:12px;color:var(--faint);margin-top:.625rem;
+.measure-input:focus{outline:none;}
+.measure-input::placeholder{color:var(--faint);font-size:18px;}
+.unit-inline{
+  font-size:11px;color:var(--faint);
+  text-align:right;padding-right:2px;
 }
 
-/* ── Result badge ── */
-.result-badge{
-  margin-top:.875rem;
-  padding:10px 14px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  display:none;
-}
-.r-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
-.r-val{font-size:26px;font-weight:700;margin-top:2px;color:var(--text)}
-.r-range{font-size:12px;color:var(--muted);margin-top:2px}
-.r-note{
-  font-size:12px;color:var(--muted);
-  margin-top:6px;padding-top:6px;
-  border-top:1px solid var(--border);display:none;
-}
-
-/* ── Controls ── */
-.section-head{
-  font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.05em;color:var(--faint);margin-bottom:8px;
-}
+/* unit toggle */
 .unit-row{display:flex;gap:6px;margin-bottom:1.25rem}
 .unit-btn{
   padding:5px 14px;font-size:13px;
@@ -180,45 +173,55 @@ body{
   background:var(--chip);color:var(--text);
   font-weight:600;border-color:var(--border-md);
 }
-.seg{
-  display:flex;border:1px solid var(--border);
-  border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1.25rem;
+
+/* ── Result ── */
+.result-badge{
+  margin-top:.875rem;
+  padding:12px 14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  display:none;
 }
-.seg button{
-  flex:1;padding:7px 0;font-size:13px;
-  background:none;border:none;cursor:pointer;
-  color:var(--muted);font-family:inherit;
+.r-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.r-val{font-size:32px;font-weight:700;margin-top:2px;color:var(--text);line-height:1}
+.r-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.r-note{
+  font-size:12px;color:var(--muted);
+  margin-top:8px;padding-top:8px;
+  border-top:1px solid var(--border);display:none;
+  line-height:1.5;
 }
-.seg button.active{background:var(--chip);color:var(--text);font-weight:600}
 
 /* ── Divider ── */
-.divider{
-  border:none;border-top:1px solid var(--border);
-  margin:1.125rem 0 1.25rem;
-}
+.divider{border:none;border-top:1px solid var(--border);margin:1.125rem 0 1.25rem}
 
 /* ── Chart ── */
+.section-head{
+  font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--faint);margin-bottom:8px;
+}
 .chart-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
 .chart-table th{
   text-align:left;font-size:11px;font-weight:600;color:var(--faint);
   text-transform:uppercase;letter-spacing:.04em;
   padding:4px 0;border-bottom:1px solid var(--border);
 }
+.chart-table th:not(:first-child){text-align:right}
 .chart-table td{padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted)}
-.chart-table td:last-child{text-align:right}
+.chart-table td:not(:first-child){text-align:right}
 .chart-table tr.hl td{color:var(--text);font-weight:600}
-.foot-note{font-size:12px;color:var(--faint);margin-top:8px}
+.chart-table tr.hl td:first-child{position:relative}
+.chart-table tr.hl td:first-child::before{
+  content:'›';margin-right:4px;opacity:.5;
+}
+.foot-note{font-size:12px;color:var(--faint);margin-top:8px;line-height:1.5}
 
 /* ── Signature ── */
 .signature{
   text-align:center;margin-top:2.5rem;
   padding-top:1.25rem;border-top:1px solid var(--border);
 }
-.signature a{
-  font-size:12px;color:var(--faint);text-decoration:none;
-  letter-spacing:.02em;transition:color .15s;
-}
-.signature a:hover{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -232,29 +235,51 @@ body{
   <div id="cardGrid"></div>
 
   <div class="signature">
-    <span style="font-size:12px;color:var(--faint);letter-spacing:.02em"><a href="http://bizemind.com" target="_blank" rel="noopener" style="font-size:12px;color:var(--faint);text-decoration:none">bizemind</a> — Built by Creatis</span>
+    <span style="font-size:12px;color:var(--faint);letter-spacing:.02em">
+      <a href="http://bizemind.com" target="_blank" rel="noopener"
+        style="font-size:12px;color:var(--faint);text-decoration:none">bizemind</a>
+      — Built by Creatis
+    </span>
   </div>
 
 </div>
 <script>
-const sizes = ["XS/S","S/M","M/L","L/XL","XL/XXL"];
-const chartData = {
-  bust:  {in:[[32,35],[35,38],[38,41],[41,44],[44,47]],cm:[[81,89],[89,96],[96,104],[104,112],[112,119]]},
-  waist: {in:[[26,29],[29,32],[32,35],[35,38],[38,41]],cm:[[66,74],[74,81],[81,89],[89,97],[97,104]]},
-  hip:   {in:[[34,37],[37,40],[40,43],[43,46],[46,49]],cm:[[86,94],[94,102],[102,109],[109,117],[117,124]]}
-};
-const ZONES = {
-  bust:  {pct:22, clr:'#3a7bd5', label:'Bust'},
-  waist: {pct:50, clr:'#c4621a', label:'Waist'},
-  hip:   {pct:78, clr:'#2e9e58', label:'Hip'},
-};
-const HINTS = {
-  bust:  'Measure around the fullest part of your chest.',
-  waist: 'Measure around the narrowest part of your torso.',
-  hip:   'Measure around the fullest part of your hips and seat.',
-};
-const state = {type:'bust', unit:'in', value:''};
+/* ── Size data: boundary rule = size DOWN
+   e.g. bust 35" → XS (upper bound is exclusive: range is [lo, hi) )        */
+const SIZES = ['XS','S','M','L','XL'];
 
+const chartData = {
+  bust:  {
+    in: [[32,35],[35,38],[38,41],[41,44],[44,47]],
+    cm: [[81,89],[89,96],[96,104],[104,112],[112,119]]
+  },
+  waist: {
+    in: [[25,28],[28,31],[31,34],[34,37],[37,40]],
+    cm: [[63,71],[71,79],[79,86],[86,94],[94,102]]
+  },
+  hip:   {
+    in: [[34,37],[37,40],[40,43],[43,46],[46,49]],
+    cm: [[86,94],[94,102],[102,109],[109,117],[117,124]]
+  }
+};
+
+/* zone config */
+const ZONES = {
+  bust:  {pct:22, clr:'var(--bust-clr)',  label:'Bust'},
+  waist: {pct:50, clr:'var(--waist-clr)', label:'Waist'},
+  hip:   {pct:78, clr:'var(--hip-clr)',   label:'Hip'},
+};
+
+const HINTS = {
+  bust:  'Fullest part of your chest.',
+  waist: 'Narrowest part of your torso.',
+  hip:   'Fullest part of your hips and seat.',
+};
+
+/* state */
+const state = {unit:'in', bust:'', waist:'', hip:''};
+
+/* ── Tape canvas ── */
 function drawTape(canvas){
   const dpr = window.devicePixelRatio||1;
   const W = canvas.offsetWidth, H = canvas.offsetHeight;
@@ -263,27 +288,99 @@ function drawTape(canvas){
   const ctx = canvas.getContext('2d');
   ctx.scale(dpr,dpr);
   const dark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-  const clr  = dark ? 'rgba(200,180,100,0.32)' : 'rgba(100,80,20,0.22)';
-  const clrM = dark ? 'rgba(200,180,100,0.55)' : 'rgba(100,80,20,0.42)';
-  const steps = 32;
-  const step  = W / steps;
-  for(let i=0; i<=steps; i++){
-    const x = i*step;
-    const major = i%4===0;
-    const th = major ? H*0.42 : H*0.26;
-    ctx.strokeStyle = major ? clrM : clr;
-    ctx.lineWidth   = major ? 1.2 : 0.8;
+  const clr  = dark?'rgba(200,180,100,0.32)':'rgba(100,80,20,0.22)';
+  const clrM = dark?'rgba(200,180,100,0.55)':'rgba(100,80,20,0.42)';
+  const steps=32, step=W/steps;
+  for(let i=0;i<=steps;i++){
+    const x=i*step, major=i%4===0, th=major?H*.42:H*.26;
+    ctx.strokeStyle=major?clrM:clr; ctx.lineWidth=major?1.2:.8;
     ctx.beginPath();
-    ctx.moveTo(x,0);       ctx.lineTo(x,th);
-    ctx.moveTo(x,H);       ctx.lineTo(x,H-th);
+    ctx.moveTo(x,0);ctx.lineTo(x,th);
+    ctx.moveTo(x,H);ctx.lineTo(x,H-th);
     ctx.stroke();
   }
 }
 
+/* ── Size resolver ──
+   For each measurement: find which size index it falls in (size-down rule).
+   Returns index or -1 if out of range.                                       */
+function resolveOne(val, ranges){
+  if(!val && val!==0) return null; // not entered
+  const v = parseFloat(val);
+  if(isNaN(v)) return null;
+  for(let i=0;i<ranges.length;i++){
+    const [lo,hi]=ranges[i];
+    // size-down: [lo, hi) — lo inclusive, hi exclusive EXCEPT last size
+    if(i===ranges.length-1){
+      if(v>=lo && v<=hi) return i;
+    } else {
+      if(v>=lo && v<hi) return i;
+    }
+  }
+  return -1; // out of range
+}
+
+function resolveSize(unit){
+  const bust  = resolveOne(state.bust,  chartData.bust[unit]);
+  const waist = resolveOne(state.waist, chartData.waist[unit]);
+  const hip   = resolveOne(state.hip,   chartData.hip[unit]);
+
+  const entered = [
+    bust  !== null ? {key:'bust',  idx:bust}  : null,
+    waist !== null ? {key:'waist', idx:waist} : null,
+    hip   !== null ? {key:'hip',   idx:hip}   : null,
+  ].filter(Boolean);
+
+  if(!entered.length) return null;
+
+  // Check if any measurement is out of range
+  const outOfRange = entered.filter(e=>e.idx===-1);
+
+  // Valid entries only
+  const valid = entered.filter(e=>e.idx!==-1);
+  if(!valid.length) return {size:null, note:'Measurements are outside our size range.', deciding:null};
+
+  // Find the most common size index among valid entries
+  const counts = {};
+  valid.forEach(e=>{ counts[e.idx]=(counts[e.idx]||0)+1; });
+  const maxCount = Math.max(...Object.values(counts));
+  const candidates = Object.keys(counts)
+    .filter(k=>counts[k]===maxCount)
+    .map(Number)
+    .sort((a,b)=>a-b);
+
+  // If tie, pick the smaller size (size-down principle)
+  const chosen = candidates[0];
+
+  // Build note
+  let note = '';
+  const labels = {bust:'Bust', waist:'Waist', hip:'Hip'};
+
+  if(valid.length > 1){
+    const deciding = valid.find(e=>e.idx===chosen);
+    const conflicts = valid.filter(e=>e.idx!==chosen);
+    if(conflicts.length){
+      const conflictNames = conflicts.map(e=>labels[e.key]).join(' & ');
+      const decidingNames = valid.filter(e=>e.idx===chosen).map(e=>labels[e.key]).join(' & ');
+      note = `${decidingNames} measurement${valid.filter(e=>e.idx===chosen).length>1?'s':''} determined the size. ${conflictNames} ${conflicts.length>1?'fall':'falls'} in an adjacent size — the elastic will accommodate.`;
+    }
+  }
+  if(outOfRange.length){
+    const names = outOfRange.map(e=>labels[e.key]).join(' & ');
+    note += (note?' ':'')+`${names} measurement${outOfRange.length>1?'s are':' is'} outside our size range.`;
+  }
+
+  // Which measurements are filled and deciding
+  const decidingKeys = valid.filter(e=>e.idx===chosen).map(e=>e.key);
+
+  return {size:SIZES[chosen], idx:chosen, note, decidingKeys};
+}
+
+/* ── Build card ── */
 function buildCard(){
   const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = `
+  card.className='card';
+  card.innerHTML=`
     <div class="guide-name">Garment sizing</div>
     <div class="guide-sub">Bust · Waist · Hip</div>
     <div class="tag-row">
@@ -310,156 +407,224 @@ function buildCard(){
       </div>
     </div>
 
-    <!-- Measurement hero -->
+    <!-- Measurement inputs -->
     <div class="measure-hero">
-      <div class="measure-prompt">Your measurement</div>
-      <div class="measure-input-row">
-        <input class="measure-input gValueInput" type="number"
-          inputmode="decimal" step="0.5" placeholder="0" autocomplete="off">
-        <span class="measure-unit gUnitLabel">in</span>
+      <div class="measure-prompt">Your measurements</div>
+      <div class="measure-best-fit">For best fit, enter all three — <strong>Bust, Waist & Hip.</strong></div>
+
+      <div class="measure-inputs">
+        <div class="measure-field">
+          <div class="measure-field-label" id="labelBust">Bust</div>
+          <input class="measure-input" id="inputBust" type="number"
+            inputmode="decimal" step="0.5" placeholder="0" autocomplete="off">
+          <div class="unit-inline gUnitHint">in</div>
+        </div>
+        <div class="measure-field">
+          <div class="measure-field-label" id="labelWaist">Waist</div>
+          <input class="measure-input" id="inputWaist" type="number"
+            inputmode="decimal" step="0.5" placeholder="0" autocomplete="off">
+          <div class="unit-inline gUnitHint">in</div>
+        </div>
+        <div class="measure-field">
+          <div class="measure-field-label" id="labelHip">Hip</div>
+          <input class="measure-input" id="inputHip" type="number"
+            inputmode="decimal" step="0.5" placeholder="0" autocomplete="off">
+          <div class="unit-inline gUnitHint">in</div>
+        </div>
       </div>
-      <div class="measure-hint gHint">${HINTS.bust}</div>
-      <div class="result-badge gResult">
+
+      <!-- Unit toggle inside hero -->
+      <div class="unit-row" id="gUnitRow">
+        <button class="unit-btn active" data-v="in">in</button>
+        <button class="unit-btn" data-v="cm">cm</button>
+      </div>
+
+      <!-- Result -->
+      <div class="result-badge" id="resultBadge">
         <div class="r-label">Recommended size</div>
-        <div class="r-val gSizeVal"></div>
-        <div class="r-range gSizeRange"></div>
-        <div class="r-note gSizeNote"></div>
+        <div class="r-val" id="rVal"></div>
+        <div class="r-sub" id="rSub"></div>
+        <div class="r-note" id="rNote"></div>
       </div>
-    </div>
-
-    <!-- Unit -->
-    <div class="section-head">Unit</div>
-    <div class="unit-row" id="gUnitRow">
-      <button class="unit-btn active" data-v="in">in</button>
-      <button class="unit-btn" data-v="cm">cm</button>
-    </div>
-
-    <!-- Measurement point -->
-    <div class="section-head">Measurement point</div>
-    <div class="seg" id="gTypeSeg">
-      <button data-v="bust" class="active">Bust</button>
-      <button data-v="waist">Waist</button>
-      <button data-v="hip">Hip</button>
     </div>
 
     <hr class="divider">
 
-    <!-- Size chart -->
-    <div class="section-head">Size chart</div>
+    <!-- Size chart — 3 columns -->
+    <div class="section-head">Size chart <span class="gUnitChartLabel" style="font-weight:400;text-transform:none;letter-spacing:0">(in)</span></div>
     <table class="chart-table">
-      <thead><tr><th>Size</th><th class="gChartHead">Range (in)</th></tr></thead>
-      <tbody class="gChartBody"></tbody>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Bust</th>
+          <th>Waist</th>
+          <th>Hip</th>
+        </tr>
+      </thead>
+      <tbody id="chartBody"></tbody>
     </table>
-    <div class="foot-note">Dresses are 51–52" in length. Measure over the fullest point.</div>
+    <div class="foot-note">
+      Dresses are 51–52" in length. Measure over the fullest point of each zone.<br>
+      At size boundaries, we recommend sizing down — the elastic will accommodate.
+    </div>
   `;
 
-  /* tape */
+  /* refs */
   const canvas    = card.querySelector('.tape-canvas');
   const indicator = card.querySelector('#tapeIndicator');
   const anchors   = card.querySelectorAll('.tape-anchor');
+  const inputBust  = card.querySelector('#inputBust');
+  const inputWaist = card.querySelector('#inputWaist');
+  const inputHip   = card.querySelector('#inputHip');
+  const labelBust  = card.querySelector('#labelBust');
+  const labelWaist = card.querySelector('#labelWaist');
+  const labelHip   = card.querySelector('#labelHip');
+  const resultBadge= card.querySelector('#resultBadge');
+  const rVal       = card.querySelector('#rVal');
+  const rSub       = card.querySelector('#rSub');
+  const rNote      = card.querySelector('#rNote');
 
-  function setZone(type, pulse){
+  /* tape zone setter */
+  function setZone(type){
     const z = ZONES[type];
-    indicator.style.left = z.pct + '%';
+    const clr = getComputedStyle(document.documentElement)
+      .getPropertyValue(z.clr.replace('var(','').replace(')','').trim()) || z.clr;
+    indicator.style.left = z.pct+'%';
     indicator.querySelector('.tape-indicator-line').style.background    = z.clr;
     indicator.querySelector('.tape-indicator-diamond').style.background = z.clr;
     anchors.forEach(a=>{
-      const on = a.dataset.zone === type;
+      const on = a.dataset.zone===type;
       a.classList.toggle('active', on);
-      a.querySelector('.tape-anchor-label').style.color      = on ? z.clr : '';
-      a.querySelector('.tape-anchor-dot').style.background   = on ? z.clr : '';
+      a.querySelector('.tape-anchor-label').style.color    = on ? z.clr : '';
+      a.querySelector('.tape-anchor-dot').style.background = on ? z.clr : '';
     });
-    card.querySelector('.gHint').textContent = HINTS[type];
-    if(pulse){
-      indicator.style.opacity = '0.3';
-      requestAnimationFrame(()=>{
-        setTimeout(()=>{ indicator.style.opacity = '1'; }, 80);
-      });
-    }
+    // label colours
+    labelBust.className  = 'measure-field-label'+(type==='bust'  ? ' bust-active'  : '');
+    labelWaist.className = 'measure-field-label'+(type==='waist' ? ' waist-active' : '');
+    labelHip.className   = 'measure-field-label'+(type==='hip'   ? ' hip-active'   : '');
   }
 
-  requestAnimationFrame(()=>{
-    drawTape(canvas);
-    setZone(state.type, false);
-    card.querySelector('.gValueInput').focus();
-  });
-  window.addEventListener('resize', ()=> drawTape(canvas), {passive:true});
+  /* filled dot on anchor when value is present */
+  function updateFilledDots(){
+    const filled = {bust:!!parseFloat(state.bust), waist:!!parseFloat(state.waist), hip:!!parseFloat(state.hip)};
+    anchors.forEach(a=>{
+      a.classList.toggle('filled', filled[a.dataset.zone]);
+      if(filled[a.dataset.zone] && !a.classList.contains('active')){
+        a.querySelector('.tape-anchor-dot').style.background = ZONES[a.dataset.zone].clr;
+        a.querySelector('.tape-anchor-dot').style.opacity = '0.5';
+      } else if(!a.classList.contains('active')){
+        a.querySelector('.tape-anchor-dot').style.background = '';
+        a.querySelector('.tape-anchor-dot').style.opacity = '';
+      }
+    });
+  }
 
-  /* tabs */
-  card.querySelector('#gTypeSeg').addEventListener('click', e=>{
-    const b = e.target.closest('button'); if(!b) return;
-    state.type = b.dataset.v;
-    card.querySelectorAll('#gTypeSeg button').forEach(x=>x.classList.toggle('active',x===b));
-    setZone(state.type, false);
-    renderChart(card); calcSize(card);
+  /* input border colour */
+  function setBorderClr(input, clrVar){
+    input.style.borderColor = clrVar;
+  }
+  function clearBorder(input){ input.style.borderColor = ''; }
+
+  /* focus handlers */
+  [
+    [inputBust,  'bust'],
+    [inputWaist, 'waist'],
+    [inputHip,   'hip'],
+  ].forEach(([inp, zone])=>{
+    inp.addEventListener('focus', ()=>{
+      setZone(zone);
+      setBorderClr(inp, ZONES[zone].clr);
+    });
+    inp.addEventListener('blur', ()=>{
+      clearBorder(inp);
+    });
+    inp.addEventListener('input', function(){
+      state[zone] = this.value;
+      updateFilledDots();
+      calcAndRender(card);
+    });
   });
 
-  /* unit */
+  /* unit toggle */
   card.querySelector('#gUnitRow').addEventListener('click', e=>{
     const b = e.target.closest('button'); if(!b) return;
     state.unit = b.dataset.v;
     card.querySelectorAll('#gUnitRow button').forEach(x=>x.classList.toggle('active',x===b));
-    card.querySelector('.gUnitLabel').textContent  = b.dataset.v;
-    card.querySelector('.gChartHead').textContent  = 'Range ('+b.dataset.v+')';
-    // clear value when switching units to avoid confusion
-    card.querySelector('.gValueInput').value = '';
-    state.value = '';
-    card.querySelector('.gResult').style.display = 'none';
-    renderChart(card);
+    // clear values on unit switch
+    state.bust=''; state.waist=''; state.hip='';
+    inputBust.value=''; inputWaist.value=''; inputHip.value='';
+    resultBadge.style.display='none';
+    card.querySelectorAll('.gUnitHint').forEach(el=>el.textContent=b.dataset.v);
+    card.querySelector('.gUnitChartLabel').textContent='('+b.dataset.v+')';
+    renderChart(card, null);
+    updateFilledDots();
   });
 
-  /* input */
-  card.querySelector('.gValueInput').addEventListener('input', function(){
-    state.value = this.value;
-    if(parseFloat(this.value)) setZone(state.type, true);
-    calcSize(card);
+  /* init */
+  requestAnimationFrame(()=>{
+    drawTape(canvas);
+    setZone('bust');
+    inputBust.focus();
   });
+  window.addEventListener('resize', ()=>drawTape(canvas), {passive:true});
 
-  /* highlight input border with zone colour on focus */
-  card.querySelector('.gValueInput').addEventListener('focus', function(){
-    this.style.borderColor = ZONES[state.type].clr;
-  });
-  card.querySelector('.gValueInput').addEventListener('blur', function(){
-    this.style.borderColor = '';
-  });
-
-  renderChart(card);
+  renderChart(card, null);
   return card;
 }
 
-function renderChart(card){
-  const rows = chartData[state.type][state.unit];
-  const v    = parseFloat(state.value);
-  card.querySelector('.gChartBody').innerHTML = rows.map((r,i)=>{
-    const hl = !isNaN(v) && v>=r[0] && v<=r[1];
-    return `<tr class="${hl?'hl':''}"><td>${sizes[i]}</td><td>${r[0]}–${r[1]}</td></tr>`;
+/* ── Render chart ── */
+function renderChart(card, highlightIdx){
+  const u = state.unit;
+  card.querySelector('#chartBody').innerHTML = SIZES.map((sz,i)=>{
+    const b = chartData.bust[u][i];
+    const w = chartData.waist[u][i];
+    const h = chartData.hip[u][i];
+    const hl = i===highlightIdx;
+    return `<tr class="${hl?'hl':''}">
+      <td>${sz}</td>
+      <td>${b[0]}–${b[1]}</td>
+      <td>${w[0]}–${w[1]}</td>
+      <td>${h[0]}–${h[1]}</td>
+    </tr>`;
   }).join('');
 }
 
-function calcSize(card){
-  const v   = parseFloat(state.value);
-  const res = card.querySelector('.gResult');
-  if(!v){ res.style.display='none'; renderChart(card); return; }
-  const rows    = chartData[state.type][state.unit];
-  const matches = rows.reduce((a,r,i)=> r[0]<=v&&v<=r[1] ? [...a,i] : a, []);
-  if(!matches.length){
-    card.querySelector('.gSizeVal').textContent   = 'Out of range';
-    card.querySelector('.gSizeRange').textContent = '';
-    card.querySelector('.gSizeNote').style.display = 'none';
-    res.style.display = 'block'; renderChart(card); return;
+/* ── Calc & render result ── */
+function calcAndRender(card){
+  const res = resolveSize(state.unit);
+  const badge = card.querySelector('#resultBadge');
+  const rVal  = card.querySelector('#rVal');
+  const rSub  = card.querySelector('#rSub');
+  const rNote = card.querySelector('#rNote');
+
+  // only show if at least one value entered
+  const anyEntered = state.bust||state.waist||state.hip;
+  if(!anyEntered){ badge.style.display='none'; renderChart(card,null); return; }
+
+  if(!res){ badge.style.display='none'; renderChart(card,null); return; }
+
+  if(!res.size){
+    rVal.textContent  = '—';
+    rSub.textContent  = '';
+    rNote.textContent = res.note||'';
+    rNote.style.display = res.note ? 'block':'none';
+    badge.style.display = 'block';
+    renderChart(card, null);
+    return;
   }
-  const idx = matches[matches.length-1];
-  card.querySelector('.gSizeVal').textContent   = sizes[idx];
-  card.querySelector('.gSizeRange').textContent = rows[idx][0]+'–'+rows[idx][1]+' '+state.unit;
-  const note = card.querySelector('.gSizeNote');
-  if(matches.length>1){
-    note.textContent     = 'Between sizes — relaxed fit recommended.';
-    note.style.display   = 'block';
-  } else {
-    note.style.display   = 'none';
-  }
-  res.style.display = 'block';
-  renderChart(card);
+
+  rVal.textContent = res.size;
+
+  // sub: show which measurements contributed
+  const entered = ['bust','waist','hip'].filter(k=>parseFloat(state[k]));
+  const labels  = {bust:'Bust',waist:'Waist',hip:'Hip'};
+  rSub.textContent = 'Based on: '+entered.map(k=>labels[k]).join(', ');
+
+  rNote.textContent  = res.note||'';
+  rNote.style.display = res.note ? 'block':'none';
+  badge.style.display = 'block';
+
+  renderChart(card, res.idx);
 }
 
 document.getElementById('cardGrid').appendChild(buildCard());
