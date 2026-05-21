@@ -250,16 +250,16 @@ const SIZES = ['XS','S','M','L','XL'];
 
 const chartData = {
   bust:  {
-    in: [[32,35],[35,38],[38,41],[41,44],[44,47]],
-    cm: [[81,89],[89,96],[96,104],[104,112],[112,119]]
+    in: [[32,34],[35,37],[38,40],[41,43],[44,46]],
+    cm: [[81,86],[89,94],[97,102],[104,109],[112,117]]
   },
   waist: {
-    in: [[25,28],[28,31],[31,34],[34,37],[37,40]],
-    cm: [[63,71],[71,79],[79,86],[86,94],[94,102]]
+    in: [[25,27],[28,30],[31,33],[34,36],[37,39]],
+    cm: [[64,69],[71,76],[79,84],[86,91],[94,99]]
   },
   hip:   {
-    in: [[34,37],[37,40],[40,43],[43,46],[46,49]],
-    cm: [[86,94],[94,102],[102,109],[109,117],[117,124]]
+    in: [[34,36],[37,39],[40,42],[43,45],[46,48]],
+    cm: [[86,91],[94,99],[102,107],[109,114],[117,122]]
   }
 };
 
@@ -305,19 +305,14 @@ function drawTape(canvas){
    For each measurement: find which size index it falls in (size-down rule).
    Returns index or -1 if out of range.                                       */
 function resolveOne(val, ranges){
-  if(!val && val!==0) return null; // not entered
+  if(val==='' || val===null || val===undefined) return null; // not entered
   const v = parseFloat(val);
   if(isNaN(v)) return null;
   for(let i=0;i<ranges.length;i++){
     const [lo,hi]=ranges[i];
-    // size-down: [lo, hi) — lo inclusive, hi exclusive EXCEPT last size
-    if(i===ranges.length-1){
-      if(v>=lo && v<=hi) return i;
-    } else {
-      if(v>=lo && v<hi) return i;
-    }
+    if(v>=lo && v<=hi) return i;
   }
-  return -1; // out of range
+  return -1; // out of range (including gap between sizes)
 }
 
 function resolveSize(unit){
@@ -381,7 +376,7 @@ function buildCard(){
   const card = document.createElement('div');
   card.className='card';
   card.innerHTML=`
-    <div class="guide-name">Garment sizing</div>
+    <div class="guide-name">Clothing sizing</div>
     <div class="guide-sub">Bust · Waist · Hip</div>
     <div class="tag-row">
       <span class="tag">Clothing</span>
